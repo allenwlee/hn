@@ -1,0 +1,9 @@
+<div class="container">
+  <ul>
+    
+    <li class="post-head"><a href="/post/<%= @post.id%>">
+      <%= @post.title %></a><span class="username"> by <%= @post.user.username %></span></li>
+    <li class="post-body"><%= @post.body %></li>
+    
+  </ul>
+</div>

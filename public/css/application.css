@@ -7,3 +7,11 @@
 th {
   text-align: left;
 }
+
+.username {
+  font-style: italic;
+}
+
+ul {
+  list-style-type: none;
+}
