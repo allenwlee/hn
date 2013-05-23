@@ -22,3 +22,8 @@ th {
 ul {
   list-style-type: none;
 }
+
+#comments li {
+  display: inline;
+  padding: 10px;
+}

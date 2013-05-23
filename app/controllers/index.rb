@@ -44,7 +44,6 @@ end
 
 
 post '/post/:post_id/comment/create' do
-
   @post = Post.find(params[:post_id])
   @comment = Comment.create(body: params[:comment])
   @post.comments << @comment
@@ -58,11 +57,33 @@ get '/logout' do
   redirect '/'
 end
 
-post '/upvote' do
+# get 'post/:post_id/upvote/' do
+#   @post 
+#   redirect '/post/:id'
+# end
+
+# get '/downvote' do
+
+# end
+
+get '/post/:post_id/comment/:comment_id/upvote' do
+  p "**********"
+  p params
+  @post = Post.find(params[:post_id])
+  @vote = Vote.create(votecount: 1)
+  @comment = Comment.find(params[:comment_id])
+  @comment.votes << @vote
+  redirect "/post/#{@post.id}"
 end
 
-post '/downvote' do
+get '/post/:post_id/comment/:comment_id/downvote' do
+  @post = Post.find(params[:post_id])
+  @vote = Vote.create(votecount: -1)
+  @comment = Comment.find(params[:comment_id])
+  @comment.votes << @vote
+  redirect "/post/#{@post.id}"
 end
+
 
 
 

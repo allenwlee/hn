@@ -4,4 +4,9 @@ helpers do
       @current_user ||= User.find(session[:id])
     end
   end
+
+  def count_votes
+    
+  end
+
 end
