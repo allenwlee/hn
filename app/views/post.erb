@@ -4,6 +4,8 @@
     <li class="post-head"><a href="/post/<%= @post.id%>">
       <%= @post.title %></a><span class="username"> by <%= @post.user.username %></span></li>
       <li class="post-body"><%= @post.body %></li>
+      <li><a href="/post/<%=@post.id%>/upvote">Upvote :)</a> </li>
+      <li><a href="/post/<%=@post.id%>/downvote">Downvote :( </a></li>
     </ul>
   </div>
 
@@ -19,7 +21,7 @@
     <% if @post.comments %>
     <ul>
       <% @post.comments.each do |comment| %>
-      <div id="comments" class="container">
+      <div id="list" class="inner-container">
         <li><%= comment.body %> by <%= comment.user.username %></li>
         <li>Votes: <%= comment.votes.map {|v| v.votecount }.inject(:+) %></li>
         <li><a href="/post/<%=@post.id%>/comment/<%=comment.id%>/upvote">Upvote :)</a> </li>

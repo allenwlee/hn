@@ -1,0 +1,17 @@
+<div class="container">
+  <ul>
+    <% if @posts %>
+    <% @posts.each do |post| %>
+    <li class="post-head"><a href="/post/<%= @post.id%>">
+      <%= post.title %></li>
+    <li class="post-body"><%= @post.body %></li>
+    <% else %>
+      <%="You have no posts!"  %>
+      <a href="/post/create">Create a post here</a>
+    <% end %>
+  </ul>
+</div>
+
+<div class="container">
+  <%= erb :_comment_create %>
+</div>

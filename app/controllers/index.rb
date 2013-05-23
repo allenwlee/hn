@@ -9,11 +9,17 @@ get '/login' do
 end
 
 post '/login' do
-  @user = User.find_by_username(username: params[:username])
+  p params
+  @user = User.find_by_username(params[:username])
   session[:id] = @user.id
   erb :profile
 end
 
+get '/user/:user_id/profile' do
+  @user = User.find(params[:user_id])
+  @posts = @user.posts
+  erb :profile
+end
 
 
 get '/post/create' do
@@ -57,18 +63,21 @@ get '/logout' do
   redirect '/'
 end
 
-# get 'post/:post_id/upvote/' do
-#   @post 
-#   redirect '/post/:id'
-# end
+get '/post/:post_id/upvote' do
+  @post = Post.find(params[:post_id])
+  @vote = Vote.create(votecount: 1)
+  @post.votes << @vote
+  redirect "/"
+end
 
-# get '/downvote' do
-
-# end
+get '/post/:post_id/downvote' do
+  @post = Post.find(params[:post_id])
+  @vote = Vote.create(votecount: -1)
+  @post.votes << @vote
+  redirect "/"
+end
 
 get '/post/:post_id/comment/:comment_id/upvote' do
-  p "**********"
-  p params
   @post = Post.find(params[:post_id])
   @vote = Vote.create(votecount: 1)
   @comment = Comment.find(params[:comment_id])
@@ -78,11 +87,13 @@ end
 
 get '/post/:post_id/comment/:comment_id/downvote' do
   @post = Post.find(params[:post_id])
-  @vote = Vote.create(votecount: -1)
+  @vote = Vote.create(votecount: 1)
   @comment = Comment.find(params[:comment_id])
   @comment.votes << @vote
   redirect "/post/#{@post.id}"
 end
+
+
 
 
 
