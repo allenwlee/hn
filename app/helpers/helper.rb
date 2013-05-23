@@ -5,8 +5,11 @@ helpers do
     end
   end
 
-  def count_votes
-    
+  def sort_by_votes(posts)
+    posts.sort { |a,b| count_votes(a) <=> count_votes(b) }.reverse
   end
 
+  def count_votes(post)
+    post.votes.map { |v| v.votecount }.inject(:+)
+  end
 end

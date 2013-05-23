@@ -20,10 +20,10 @@
   
     <% if @post.comments %>
     <ul>
-      <% @post.comments.each do |comment| %>
+      <% sort_by_votes(@post.comments).map do |comment| %>
       <div id="list" class="inner-container">
         <li><%= comment.body %> by <%= comment.user.username %></li>
-        <li>Votes: <%= comment.votes.map {|v| v.votecount }.inject(:+) %></li>
+        <li>Votes: <%= count_votes(comment) %></li>
         <li><a href="/post/<%=@post.id%>/comment/<%=comment.id%>/upvote">Upvote :)</a> </li>
         <li><a href="/post/<%=@post.id%>/comment/<%=comment.id%>/downvote">Downvote :( </a></li>
       </div>

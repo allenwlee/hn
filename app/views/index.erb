@@ -10,11 +10,10 @@
   <h1>All Posts</h1>
     
   <ul>
-    <% @posts.each do |post| %>
+    <% sort_by_votes(@posts).map do |post| %>
       <div id="list" class="inner-container">
-        <li class="post-head"><a href="/post/<%= post.id%>">
-          <%= post.title %></a><span class="username"> by <%= post.user.username %></span></li>
-        <li>Votes: <%= post.votes.map {|v| v.votecount }.inject(:+) %></li>
+        <li class="post-head"><a href="/post/<%= post.id%>"><%= post.title %></a><span class="username"> by <%= post.user.username %></span></li>
+        <li>Votes: <%=count_votes(post) %></li>
         <li><a href="/post/<%=post.id%>/upvote">Upvote :)</a> </li>
         <li><a href="/post/<%=post.id%>/downvote">Downvote :( </a></li>
       </div>
