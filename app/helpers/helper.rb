@@ -10,6 +10,10 @@ helpers do
   end
 
   def count_votes(post)
-    post.votes.map { |v| v.votecount }.inject(:+)
+    if post.votes.map { |v| v.votecount }.inject(:+) == nil
+      0
+    else
+      post.votes.map { |v| v.votecount }.inject(:+)
+    end
   end
 end
