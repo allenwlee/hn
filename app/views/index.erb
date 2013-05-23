@@ -1,4 +1,8 @@
-<%= erb :_signup, :layout => false %>
+
+
+<% if current_user == nil %>
+<%= erb :_signup, :layout => true %>
+<% end %>
 
 <div class="container">
 

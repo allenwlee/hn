@@ -1,9 +1,25 @@
 <div class="container">
   <ul>
-    
+
     <li class="post-head"><a href="/post/<%= @post.id%>">
       <%= @post.title %></a><span class="username"> by <%= @post.user.username %></span></li>
-    <li class="post-body"><%= @post.body %></li>
-    
-  </ul>
-</div>
+      <li class="post-body"><%= @post.body %></li>
+
+    </ul>
+  </div>
+
+  <div class="container">
+    <%= erb :_comment_create, :layout => false %>
+  </div>
+
+  <div class="container">
+    <div class="commment-list">
+      <% if @post.comments %>
+      <ul>
+        <% @post.comments.each do |comment| %>
+        <li><%= comment.body %> by <%= comment.user.username %></li>
+        <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>

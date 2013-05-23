@@ -1,13 +1,12 @@
 <div class="container">
 
-  <h1>Sign Up</h1>
-  
-  
-  
+  <h1>Log In</h1>
   <ul>
-    <% @posts.each do |post| %>
-    <li class="post-head"><a href="/post/<%= post.id%>">
-      <%= post.title %></a><span class="username"> by <%= post.user.username %></span></li>
-    <% end %>
+    <form method="post" action="/login">
+      <li><input type="text" name="username"></li>
+      <li><input type="password" name="password"></li>
+      <li><input type="submit" value="login"></li>
+    </form>
   </ul>
+
 </div>
